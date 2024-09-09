@@ -1,0 +1,434 @@
+
+------------------------------------------- 24th July Complexity Analysis and Array Assignment  ------------------------------------------------
+
+===============================================================================================================================
+
+----------------------------------------------------------------- Time and Space complexity --------------------------------------------------------------------------------------
+
+===============================================================================================================================
+
+Question 1. Analyze the time complexity of the following Java code and suggest a way to improve it:
+int sum = 0;
+for(int i = 1; i <= n; i++) {
+for(int j = 1; j <= i; j++) {
+sum++;
+}
+}
+
+Solution :
+The time complexity of this code is O(n^2) as it uses nested loops, where the outer loop runs n times and the inner
+loop runs i times where i varies from 1 to n.
+The total number of operations performed can be calculated by summing the total number of operations in each
+iteration of the outer loop. The inner loop will run i times on the i-th iteration of the outer loop. So the number of
+operations is (1+2+3+...+n) which is n(n+1)/2, which is O(n^2).
+One way to improve the time complexity of this code is to use a mathematical formula to find the sum instead of
+using nested loops.
+
+===============================================================================================================================
+
+Question 2: Find the value of T(2) for the recurrence relation T(n) = 3T(n-1) + 12n, given that T(0) = 5.
+Solution : given T(n) = 3T(n-1) + 12n
+Substituting the values in the relation:
+T(1) = 3T(0) + 12
+=> T(1) = 15 + 12 = 27
+T(2) = 3T(1) + 12 * 2
+=>T(2) = 3 * 27 + 24 = 81 + 24
+Hence T(2) = 105.
+
+==============================================================================================================================
+
+Question 3: Given a recurrence relation, solve it using a substitution method. Relation : T(n) = T(n - 1) + c.
+Solution: Let the solution be T(n) = O(n), now let’s prove this using the induction method.
+For that to happen T(n) <= cn where c is some constant.
+T(n) = T(n - 1) + c
+T(n - 1) = T(n - 2) + c
+T(n - 2) = T(n - 3) + c
+|
+|
+T(2) = T(1) + c
+—------------------------ Adding all above equations
+T(n) = T(1) + cn
+Let us assume T(1) to be a constant value.
+T(n) = k + cn
+Therefore, T(n) <= cn
+Hence we can conclude T(n) = O(n).
+
+==============================================================================================================================================
+
+Question 4: Given a recurrence relation:
+T(n) = 16T(n/4) + n2logn
+Find the time complexity of this relation using the master theorem.
+Solution: Fromthegivenrecurrencerelationwecanobtainthevalueofdifferentparameterssuchasa,b,p,and
+k.
+Therelation:T(n)=16T(n/4)+n2logn
+Here,a=16
+b=4
+k=2
+p=1
+bk=42=16
+Herea=bk
+Alsop>-1
+HenceT(n)=θ(nlogab*logp+1n)
+ThereforeT(n)=θ(nlog164*log1+1n)=θ(n1/2log2n)
+
+===============================================================================================================================
+
+Question 5: Solve the following recurrence relation using recursion tree method
+T(n) = 2T(n/2) + n
+Solution :Thegivenrecurrencerelationshows-
+Aproblemofsi%enwillgetdividedinto2subproblemsofsi%en/2E
+$ Then,eachsub-problemofsi%en/2willbedividedinto2subproblemsofsi%en/4andsoonD
+$ Atthebottommostlayer,thesi%eofsub-problemswillreduceto1.
+Thisisillustratedthroughfollowingrecursiontree0
+
+Thegivenrecurrencerelationshows/
+$ Thecostofdividingaproblemofsi%enintoits2sub-problemsandthencombiningitssolutionisnD
+$ Thecostofdividingaproblemofsi%en/2intoits2sub-problemsandthencombiningitssolutionisn/2andso
+on.
+
+n x log2n + θ (n)
+= nlog2n + θ (n)
+= θ (nlog2n)
+
+==============================================================================================================================================
+
+
+
+Question 6. T(n) = 2T(n/2) + K, Solve using Recurrence tree method.
+Step1. Drawing Recursion Tree
+
+@pw Team please redesign the image
+Step2. Calculating height of tree
+As we know that (n/2^k) =1
+n = 2^K
+Taking log both sides
+log(n) = log(2^k)
+log(n) = klog(2)
+k = log(n)/log(2)
+k = log2(n)
+Height of tree is log(n) base 2
+
+The total cost can be written as,
+Total Cost = Cost of all levels except last level + Cost of last level
+Total Cost = Cost for level-0 + Cost for level-1 + Cost for level-2 + .... + Cost for level-log(n) + Cost for last level
+The cost of the last level is calculated separately because it is the base case and no merging is done at the last
+level so, the cost to solve a single problem at this level is some constant value. Let's take it as O(1)
+
+Let's put the values into the formulae,
+T(n) = K + 2*K + 4*K + .... + log(n)` times + `O(1) * n
+T(n) = K(1 + 2 + 4 + .... + log(n) times)` + `O(n)
+T(n) = K( 2^0 + 2^1 + 2^2 + ....+ log(n) times + O(n)
+In the GP formed above, a = 1 and r = 2, after solving this we get, T(n) = K * (1 / (2 - 1)) + O(n)
+T(n) = K + O(n)
+T(n) = O(n)
+
+
+
+===============================================================================================================================
+
+----------------------------------------------------------------- 1D arrays Assignment --------------------------------------------------------------------------------------
+
+===============================================================================================================================
+
+1. WAP to print the sum of all the elements present on even indexes in the given array.
+Sol:
+public class sumOfAllEveIdx {
+    public static void main(String[] args) 
+    {
+        int arr[] = { 1, 2, 4, 5, 7, 8, 9, 4, 6 };
+        int sum = 0;
+        for (int i = 0; i < arr.length; i=i+2) 
+        {
+           
+                sum = sum + arr[i];
+            
+        }
+        System.out.println(sum);
+    }
+}
+
+
+==============================================================================================================================================
+
+2. WAP to traverse over the elements of the array {1,2,3,4,5,6,7,8} using for each loop and print all even
+elements.
+Sol:
+public class priEveArr {
+
+    public static void main(String[] args) {
+        int arr[] = { 1, 2, 4, 5, 7, 8, 9, 4, 6 };
+        
+        for (int i : arr) {
+
+           if(arr[i]%2 == 0)
+           {
+            System.out.println(arr[i]);
+           }
+
+        }
+        
+    }
+}
+
+
+==============================================================================================================================================
+
+3. WAP to calculate the maximum element in the array {10, 7, -5, 8, 9, 0, -4} using standard library methods for
+calculating the maximum element.
+Sol:
+public class maxEleLib {
+    public static void main(String[] args) {
+        int arr[] = { -1, 7, -5, 90, -9, -9, -4 };
+        int temp = Integer.MIN_VALUE;
+        for (int n : arr) {
+            temp = Math.max(temp, n);
+        }
+        System.out.println(temp);
+    }
+
+}
+
+
+===============================================================================================================================
+
+4. WAP to find out the second largest element in the input array {34,21,54,65,43}.
+Sol:
+
+public class secLarEle {
+    public static void main(String[] args) {
+        int arr[] = { 34, 215, 89, 65, 93 , 345 , 821 };
+        int max=0;
+        int idx = 0;
+        int seMax = 0;
+        // first largest
+        for (int i = 0; i < arr.length; i++) 
+        {
+            
+                if (arr[i] > max) 
+                {
+                        max = arr[i];
+                        idx = i;
+                }
+
+        }
+            System.out.println(max);
+            System.out.println(idx);
+
+        // second largest
+
+         for (int i = 0; i < arr.length; i++) 
+        {
+            
+                if (arr[i] > seMax && arr[i] != max ) 
+                {
+                        {
+                            seMax = arr[i];
+                        }
+                }
+
+        }
+            System.out.println(seMax);
+    }
+}     
+
+===============================================================================================================================
+
+----------------------------------------------------------------- 2D arrays Assignment --------------------------------------------------------------------------------------
+
+===============================================================================================================================
+Q1: Take m and n input from the user and m * n integer inputs from user and print the following:
+
+number of positive numbers
+number of negative numbers
+number of odd numbers
+number of even numbers
+number of 0.
+Sol:
+
+import java.io.*;
+import java.util.*;
+public class Main{ 
+  public static void main(String args[]){
+    
+    int m,n;
+    Scanner sc=new Scanner(System.in);
+    System.out.print("enter the number of rows=");
+    m=sc.nextInt();    
+    System.out.print("enter the number of column=");    
+    n=sc.nextInt();
+    int arr[][]=new int[m][n];
+    
+    int i,j;    
+       
+    System.out.println("enter the  matrix element=\n");    
+    for(i=0;i<m;i++){    
+        for(j=0;j<n;j++){    
+            arr[i][j]=sc.nextInt();  
+        }    
+    }     
+    int positive = 0 , negative = 0 , zero = 0 , odd = 0 , even = 0;
+        for( i = 0 ; i < m  ; i++){
+            for( j = 0 ; j < n  ; j++){
+                if(arr[i][j] > 0)positive++;
+                if(arr[i][j] < 0)negative++;
+                if(arr[i][j] == 0)zero++;
+                if((arr[i][j] % 2) == 0)even++;
+                if((arr[i][j] % 2) != 0)odd++;
+            }
+        }
+        
+        System.out.println("Number of positives = " + positive);
+        System.out.println("Number of negatives = " + negative);
+        System.out.println("Number of odds = " + odd);
+        System.out.println("Number of evens = " + even);
+        System.out.println("Number of zeroes = " + zero);
+    }     
+}
+
+==============================================================================================================================================
+
+Q2: write a program to print the elements above the secondary diagonal in a user inputted square matrix.
+Sol:
+
+import java.io.*;
+import java.util.*;
+public class Main{ 
+  public static void main(String args[]){
+    
+    int m,n;
+    Scanner sc=new Scanner(System.in);
+    System.out.print("enter the number of rows : ");
+    m=sc.nextInt();    
+    System.out.print("enter the number of column : ");    
+    n=sc.nextInt();
+    int arr[][]=new int[m][n];
+    
+    int i,j;    
+       
+    System.out.println("enter the  matrix element : ");    
+    for(i = 0 ; i < m ; i++){    
+        for(j = 0 ; j < n ; j++){    
+            arr[i][j]=sc.nextInt();  
+        }    
+    }     
+    
+    System.out.println("Elements above secondary diagonal are as follows : ");    
+    for(i = 0 ; i < m ; i++){    
+        for(j = 0 ; j < n ; j++){    
+            if(i + j < m - 1)System.out.print(arr[i][j] + "  ");
+            }    
+        }  
+    }     
+}
+
+==============================================================================================================================================
+
+Q3: write a program to print the elements of both the diagonals in a user inputted square matrix in any order.
+Sol:
+
+
+import java.io.*;
+import java.util.*;
+public class Main{ 
+  public static void main(String args[]){
+    
+    int m,n;
+    Scanner sc=new Scanner(System.in);
+    System.out.print("enter the number of rows : ");
+    m=sc.nextInt();    
+    System.out.print("enter the number of column : ");    
+    n=sc.nextInt();
+    int arr[][]=new int[m][n];
+    
+    int i,j;    
+       
+    System.out.println("enter the  matrix element : ");    
+    for(i = 0 ; i < m ; i++){    
+        for(j = 0 ; j < n ; j++){    
+            arr[i][j]=sc.nextInt();  
+        }    
+    }     
+    
+    System.out.println("Elements of both the diagonals are as follows : ");    
+    for(i = 0 ; i < m ; i++){    
+        for(j = 0 ; j < n ; j++){    
+            if(i + j  == m - 1)System.out.print(arr[i][j] + "  ");
+            else if(i == j)System.out.print(arr[i][j] + "  ");
+            }    
+        }  
+    }     
+}
+
+==============================================================================================================================================
+
+Q4: Write a java program to find the largest element of a given 2D array of integers.
+Sol:
+
+import java.io.*;
+import java.util.*;
+public class Main{ 
+  public static void main(String args[]){
+    
+    int m,n;
+    Scanner sc=new Scanner(System.in);
+    System.out.print("enter the number of rows : ");
+    m=sc.nextInt();    
+    System.out.print("enter the number of column : ");    
+    n=sc.nextInt();
+    int arr[][]=new int[m][n];
+    
+    int i,j;    
+       
+    System.out.println("enter the  matrix element : ");    
+    for(i = 0 ; i < m ; i++){    
+        for(j = 0 ; j < n ; j++){    
+            arr[i][j]=sc.nextInt();  
+        }    
+    }  
+    
+    int maximum = -100000008;
+     for(i = 0 ; i < m ; i++){    
+        for(j = 0 ; j < n ; j++){    
+            if(maximum < arr[i][j])maximum = arr[i][j];  
+        }    
+    }
+    
+    System.out.println("The maximum element in this matrix is : " + maximum);
+    }     
+}
+
+
+==============================================================================================================================================
+
+Q.5- Write a function which accepts a 2D array of integers and its size as arguments and  displays the elements of middle row and the elements of middle column.  Printing can be done in any order. [Assuming the 2D Array to be a square matrix with odd dimensions i.e. 3x3, 5x5, 7x7 etc...]
+Sol: 
+import java.io.*;
+import java.util.*;
+public class Main{ 
+    public static void main(String args[]){
+    
+        int m,n;
+        Scanner sc=new Scanner(System.in);
+        System.out.print("enter the number of rows : ");
+        m=sc.nextInt();    
+        
+        int arr[][]=new int[m][m];
+        
+        int i,j;    
+           
+        System.out.println("enter the  matrix element : ");    
+        for(i = 0 ; i < m ; i++){    
+            for(j = 0 ; j < m ; j++){    
+                arr[i][j]=sc.nextInt();  
+            }    
+        }  
+        
+        System.out.println("The elements  of the middle row and middle column are as follows : ");
+        
+         for(i = 0 ; i < m ; i++)System.out.print(arr[i][m/2] + "  ");    
+         for(j = 0 ; j < m ; j++){
+            if(j == m/2)continue;
+            System.out.print(arr[m/2][j] + "  ");
+        }
+    }     
+}
